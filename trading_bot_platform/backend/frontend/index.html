@@ -7,18 +7,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --bg: #f5f7fa;
+      --bg: #f4f6f9;
       --sidebar: #ffffff;
       --card: #ffffff;
-      --border: #e5e9f0;
-      --text: #1a1d2e;
+      --border: #e4e7ec;
+      --text: #111827;
       --muted: #6b7280;
-      --accent: #3b82f6;
+      --accent: #2563eb;
       --accent-soft: #eff6ff;
-      --green: #10b981;
+      --green: #059669;
       --green-soft: #ecfdf5;
-      --red: #ef4444;
-      --yellow: #f59e0b;
+      --red: #dc2626;
+      --yellow: #d97706;
       --yellow-soft: #fffbeb;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,72 +30,70 @@
       min-height: 100vh;
     }
     .sidebar {
-      width: 210px;
+      width: 200px;
       background: var(--sidebar);
       border-right: 1px solid var(--border);
-      padding: 20px 10px;
+      padding: 18px 8px;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
     }
     .logo {
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--accent);
-      margin-bottom: 24px;
-      padding-left: 14px;
+      margin-bottom: 22px;
+      padding-left: 12px;
     }
     .nav-section {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
       color: var(--muted);
-      margin: 18px 14px 6px;
+      margin: 16px 12px 4px;
     }
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
-      border-radius: 8px;
+      gap: 9px;
+      padding: 7px 12px;
+      border-radius: 7px;
       color: var(--muted);
       cursor: pointer;
-      font-size: 0.9rem;
-      margin-bottom: 1px;
+      font-size: 0.88rem;
     }
     .nav-item:hover, .nav-item.active {
       background: var(--accent-soft);
       color: var(--accent);
     }
-    .nav-item i { width: 16px; }
+    .nav-item i { width: 15px; font-size: 0.85rem; }
     .main {
-      margin-left: 210px;
+      margin-left: 200px;
       flex: 1;
-      padding: 24px 28px;
+      padding: 20px 24px;
     }
     .bots-bar {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 18px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      align-items: center;
     }
     .bot-pill {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: #f8fafc;
       border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 0.78rem;
+      padding: 3px 9px;
+      font-size: 0.75rem;
     }
-    .bot-pill .dot {
-      width: 7px;
-      height: 7px;
+    .dot {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
     }
     .dot.green { background: var(--green); }
@@ -105,97 +103,97 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
     .greeting {
-      font-size: 1.9rem;
+      font-size: 1.75rem;
       font-weight: 700;
     }
     .sub {
       color: var(--muted);
-      font-size: 0.85rem;
-      margin-top: 2px;
+      font-size: 0.8rem;
+      margin-top: 1px;
     }
     .status-row {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .pill {
       background: white;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 4px 12px;
-      font-size: 0.78rem;
+      padding: 3px 10px;
+      font-size: 0.75rem;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
     }
     .metrics {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
     .metric {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px 18px;
+      border-radius: 10px;
+      padding: 14px 16px;
     }
     .metric-label {
       color: var(--muted);
-      font-size: 0.75rem;
-      margin-bottom: 4px;
+      font-size: 0.72rem;
+      margin-bottom: 3px;
     }
     .metric-value {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
     }
     .card {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 16px;
-    }
-    .card h3 {
-      font-size: 0.95rem;
+      border-radius: 10px;
+      padding: 16px;
       margin-bottom: 14px;
     }
-    .two-col {
+    .card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
     .controls {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
       align-items: center;
     }
     button {
-      padding: 8px 14px;
+      padding: 7px 12px;
       border: none;
-      border-radius: 8px;
+      border-radius: 7px;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       cursor: pointer;
     }
     .btn-primary { background: var(--accent); color: white; }
     .btn-success { background: var(--green); color: white; }
     .btn-danger { background: var(--red); color: white; }
     .btn-secondary { background: #f1f5f9; color: var(--text); }
-    input[type="range"] { width: 160px; }
+    input[type="range"] { width: 140px; }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
     }
     th, td {
-      padding: 10px 6px;
+      padding: 9px 5px;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
@@ -203,34 +201,42 @@
     .positive { color: var(--green); }
     .negative { color: var(--red); }
     .auth-box {
-      max-width: 360px;
-      margin: 100px auto;
+      max-width: 340px;
+      margin: 90px auto;
       background: white;
-      border-radius: 14px;
-      padding: 32px;
+      border-radius: 12px;
+      padding: 28px;
       border: 1px solid var(--border);
     }
-    .auth-box h2 { text-align: center; margin-bottom: 24px; color: var(--accent); }
+    .auth-box h2 { text-align: center; margin-bottom: 20px; color: var(--accent); }
     .auth-box input {
       width: 100%;
-      padding: 11px 12px;
-      margin-bottom: 10px;
+      padding: 10px 11px;
+      margin-bottom: 9px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 7px;
     }
     .hidden { display: none !important; }
-    .error { color: var(--red); font-size: 0.85rem; margin-top: 6px; }
-    .success { color: var(--green); font-size: 0.85rem; margin-top: 6px; }
-    .placeholder-chart {
-      height: 140px;
-      background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 0.85rem;
+    .error { color: var(--red); font-size: 0.82rem; margin-top: 5px; }
+    .success { color: var(--green); font-size: 0.82rem; margin-top: 5px; }
+    .market-timeline {
+      height: 36px;
+      background: linear-gradient(90deg, #e5e7eb 0%, #dbeafe 40%, #93c5fd 60%, #bfdbfe 100%);
+      border-radius: 999px;
+      position: relative;
+      margin: 10px 0;
     }
+    .market-timeline::after {
+      content: '';
+      position: absolute;
+      left: 55%;
+      top: -3px;
+      width: 12px;
+      height: 42px;
+      background: #1e40af;
+      border-radius: 4px;
+    }
+    .small-text { font-size: 0.75rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -241,7 +247,7 @@
       <input type="email" id="login-email" placeholder="Email" />
       <input type="password" id="login-password" placeholder="Password" />
       <button class="btn-primary" style="width:100%" onclick="login()">Log ind</button>
-      <p style="text-align:center; margin-top:16px; color:var(--muted); font-size:0.85rem;">
+      <p style="text-align:center; margin-top:14px; color:var(--muted); font-size:0.82rem;">
         Ingen konto? <a href="#" onclick="showRegister()" style="color:var(--accent)">Opret en</a>
       </p>
       <div id="login-error" class="error"></div>
@@ -251,7 +257,7 @@
       <input type="email" id="reg-email" placeholder="Email" />
       <input type="password" id="reg-password" placeholder="Password (min. 6)" />
       <button class="btn-primary" style="width:100%" onclick="register()">Opret konto</button>
-      <p style="text-align:center; margin-top:16px; color:var(--muted); font-size:0.85rem;">
+      <p style="text-align:center; margin-top:14px; color:var(--muted); font-size:0.82rem;">
         Har du allerede? <a href="#" onclick="showLogin()" style="color:var(--accent)">Log ind</a>
       </p>
       <div id="reg-error" class="error"></div>
@@ -272,13 +278,12 @@
       <div class="nav-item"><i class="fas fa-cog"></i> Indstillinger</div>
       <div class="nav-item"><i class="fas fa-user"></i> Profil</div>
 
-      <div style="margin-top: 48px;">
+      <div style="margin-top: 40px;">
         <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Log ud</div>
       </div>
     </aside>
 
     <main class="main">
-      <!-- Bots status bar -->
       <div class="bots-bar">
         <div class="bot-pill"><span class="dot green"></span> Risk Guard</div>
         <div class="bot-pill"><span class="dot green"></span> Disciplin-bot</div>
@@ -286,6 +291,7 @@
         <div class="bot-pill"><span class="dot yellow"></span> Performance-bot</div>
         <div class="bot-pill"><span class="dot yellow"></span> Kelly-bot</div>
         <div class="bot-pill"><span class="dot green"></span> Tab-stime-bot</div>
+        <div class="bot-pill"><span class="dot yellow"></span> Forfald-bot</div>
       </div>
 
       <div class="topbar">
@@ -320,28 +326,34 @@
         </div>
         <div class="metric">
           <div class="metric-label">Sidste signal</div>
-          <div class="metric-value" id="last-signal" style="font-size:1rem;">–</div>
+          <div class="metric-value" id="last-signal" style="font-size:0.95rem;">–</div>
         </div>
       </div>
 
-      <div class="two-col">
+      <div class="grid-2">
         <div class="card">
           <h3>Bot-styring</h3>
-          <div style="margin-bottom:12px;">
+          <div style="margin-bottom:10px;">
             Aggressivitet: <strong id="aggressiveness-value">5</strong> / 10<br>
-            <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" style="margin-top:6px;" />
+            <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" style="margin-top:4px;" />
           </div>
           <div class="controls">
             <button class="btn-secondary" onclick="saveSettings()">Gem</button>
             <button class="btn-success" id="btn-start" onclick="startBot()">Start bot</button>
             <button class="btn-danger" id="btn-stop" onclick="stopBot()" disabled>Stop bot</button>
           </div>
-          <div id="settings-msg" style="margin-top:10px;"></div>
+          <div id="settings-msg" style="margin-top:8px;"></div>
         </div>
+
         <div class="card">
-          <h3>Markeder</h3>
-          <div class="placeholder-chart">Chart kommer her</div>
-          <div style="margin-top:10px; font-size:0.8rem; color:var(--muted);">Simuleret data · paper trading</div>
+          <h3>Dagens markeder</h3>
+          <div class="market-timeline"></div>
+          <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--muted);">
+            <span>Asien</span>
+            <span>London</span>
+            <span>New York</span>
+          </div>
+          <div class="small-text" style="margin-top:8px;">Simuleret · paper trading</div>
         </div>
       </div>
 
