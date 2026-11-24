@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --bg: #f3f5f8;
+      --bg: #f4f6f9;
       --sidebar: #ffffff;
       --card: #ffffff;
-      --border: #e2e6ec;
-      --text: #0f172a;
-      --muted: #64748b;
+      --border: #e4e7ec;
+      --text: #111827;
+      --muted: #6b7280;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
       --green: #059669;
@@ -30,54 +30,54 @@
       min-height: 100vh;
     }
     .sidebar {
-      width: 190px;
+      width: 180px;
       background: var(--sidebar);
       border-right: 1px solid var(--border);
-      padding: 16px 6px;
+      padding: 14px 6px;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
     }
     .logo {
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       padding-left: 12px;
     }
     .nav-section {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--muted);
-      margin: 14px 12px 3px;
+      margin: 12px 12px 2px;
     }
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 6px;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: 5px;
       color: var(--muted);
       cursor: pointer;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
     }
     .nav-item:hover, .nav-item.active {
       background: var(--accent-soft);
       color: var(--accent);
     }
-    .nav-item i { width: 14px; font-size: 0.8rem; }
+    .nav-item i { width: 13px; font-size: 0.75rem; }
     .main {
-      margin-left: 190px;
+      margin-left: 180px;
       flex: 1;
-      padding: 16px 20px;
+      padding: 14px 18px;
     }
     .bots-bar {
       background: white;
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 10px 14px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
@@ -89,7 +89,7 @@
       background: #f8fafc;
       border-radius: 999px;
       padding: 2px 8px;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
     }
     .dot {
       width: 5px;
@@ -103,29 +103,29 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .greeting {
-      font-size: 1.6rem;
+      font-size: 1.55rem;
       font-weight: 700;
     }
     .sub {
       color: var(--muted);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       margin-top: 1px;
     }
     .status-row {
       display: flex;
       gap: 5px;
       flex-wrap: wrap;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .pill {
       background: white;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 2px 9px;
-      font-size: 0.72rem;
+      padding: 2px 8px;
+      font-size: 0.7rem;
       display: flex;
       align-items: center;
       gap: 3px;
@@ -134,66 +134,66 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .metric {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 12px 14px;
+      border-radius: 8px;
+      padding: 11px 13px;
     }
     .metric-label {
       color: var(--muted);
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       margin-bottom: 2px;
     }
     .metric-value {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 700;
     }
     .card {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 14px;
-      margin-bottom: 12px;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
     }
     .card h3 {
-      font-size: 0.85rem;
-      margin-bottom: 10px;
+      font-size: 0.82rem;
+      margin-bottom: 8px;
     }
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
     .controls {
       display: flex;
-      gap: 5px;
+      gap: 4px;
       flex-wrap: wrap;
       align-items: center;
     }
     button {
-      padding: 6px 11px;
+      padding: 5px 10px;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       font-weight: 600;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       cursor: pointer;
     }
     .btn-primary { background: var(--accent); color: white; }
     .btn-success { background: var(--green); color: white; }
     .btn-danger { background: var(--red); color: white; }
     .btn-secondary { background: #f1f5f9; color: var(--text); }
-    input[type="range"] { width: 120px; }
+    input[type="range"] { width: 110px; }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
     }
     th, td {
-      padding: 8px 4px;
+      padding: 7px 4px;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
@@ -201,42 +201,42 @@
     .positive { color: var(--green); }
     .negative { color: var(--red); }
     .auth-box {
-      max-width: 320px;
-      margin: 80px auto;
+      max-width: 300px;
+      margin: 70px auto;
       background: white;
       border-radius: 10px;
-      padding: 24px;
+      padding: 22px;
       border: 1px solid var(--border);
     }
-    .auth-box h2 { text-align: center; margin-bottom: 18px; color: var(--accent); }
+    .auth-box h2 { text-align: center; margin-bottom: 16px; color: var(--accent); }
     .auth-box input {
       width: 100%;
-      padding: 9px 10px;
-      margin-bottom: 8px;
+      padding: 8px 9px;
+      margin-bottom: 7px;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 5px;
     }
     .hidden { display: none !important; }
-    .error { color: var(--red); font-size: 0.78rem; margin-top: 4px; }
-    .success { color: var(--green); font-size: 0.78rem; margin-top: 4px; }
+    .error { color: var(--red); font-size: 0.75rem; margin-top: 4px; }
+    .success { color: var(--green); font-size: 0.75rem; margin-top: 4px; }
     .market-timeline {
-      height: 28px;
+      height: 24px;
       background: linear-gradient(90deg, #e5e7eb 0%, #dbeafe 35%, #93c5fd 55%, #bfdbfe 100%);
       border-radius: 999px;
       position: relative;
-      margin: 8px 0;
+      margin: 6px 0;
     }
     .market-timeline::after {
       content: '';
       position: absolute;
-      left: 52%;
-      top: -2px;
-      width: 10px;
-      height: 32px;
+      left: 50%;
+      top: -1px;
+      width: 8px;
+      height: 26px;
       background: #1e40af;
-      border-radius: 3px;
+      border-radius: 2px;
     }
-    .small-text { font-size: 0.7rem; color: var(--muted); }
+    .small-text { font-size: 0.68rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -247,7 +247,7 @@
       <input type="email" id="login-email" placeholder="Email" />
       <input type="password" id="login-password" placeholder="Password" />
       <button class="btn-primary" style="width:100%" onclick="login()">Log ind</button>
-      <p style="text-align:center; margin-top:12px; color:var(--muted); font-size:0.78rem;">
+      <p style="text-align:center; margin-top:10px; color:var(--muted); font-size:0.75rem;">
         Ingen konto? <a href="#" onclick="showRegister()" style="color:var(--accent)">Opret en</a>
       </p>
       <div id="login-error" class="error"></div>
@@ -257,7 +257,7 @@
       <input type="email" id="reg-email" placeholder="Email" />
       <input type="password" id="reg-password" placeholder="Password (min. 6)" />
       <button class="btn-primary" style="width:100%" onclick="register()">Opret konto</button>
-      <p style="text-align:center; margin-top:12px; color:var(--muted); font-size:0.78rem;">
+      <p style="text-align:center; margin-top:10px; color:var(--muted); font-size:0.75rem;">
         Har du allerede? <a href="#" onclick="showLogin()" style="color:var(--accent)">Log ind</a>
       </p>
       <div id="reg-error" class="error"></div>
@@ -278,7 +278,7 @@
       <div class="nav-item"><i class="fas fa-cog"></i> Indstillinger</div>
       <div class="nav-item"><i class="fas fa-user"></i> Profil</div>
 
-      <div style="margin-top: 36px;">
+      <div style="margin-top: 32px;">
         <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Log ud</div>
       </div>
     </aside>
@@ -326,34 +326,34 @@
         </div>
         <div class="metric">
           <div class="metric-label">Sidste signal</div>
-          <div class="metric-value" id="last-signal" style="font-size:0.9rem;">–</div>
+          <div class="metric-value" id="last-signal" style="font-size:0.85rem;">–</div>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="card">
           <h3>Bot-styring</h3>
-          <div style="margin-bottom:8px;">
+          <div style="margin-bottom:6px;">
             Aggressivitet: <strong id="aggressiveness-value">5</strong> / 10<br>
-            <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" style="margin-top:3px;" />
+            <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" style="margin-top:2px;" />
           </div>
           <div class="controls">
             <button class="btn-secondary" onclick="saveSettings()">Gem</button>
             <button class="btn-success" id="btn-start" onclick="startBot()">Start bot</button>
             <button class="btn-danger" id="btn-stop" onclick="stopBot()" disabled>Stop bot</button>
           </div>
-          <div id="settings-msg" style="margin-top:6px;"></div>
+          <div id="settings-msg" style="margin-top:5px;"></div>
         </div>
 
         <div class="card">
           <h3>Dagens markeder</h3>
           <div class="market-timeline"></div>
-          <div style="display:flex; justify-content:space-between; font-size:0.65rem; color:var(--muted);">
+          <div style="display:flex; justify-content:space-between; font-size:0.62rem; color:var(--muted);">
             <span>Asien</span>
             <span>London</span>
             <span>New York</span>
           </div>
-          <div class="small-text" style="margin-top:6px;">Simuleret · paper trading</div>
+          <div class="small-text" style="margin-top:5px;">Simuleret · paper trading</div>
         </div>
       </div>
 
