@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --bg: #f4f6f9;
+      --bg: #f3f5f8;
       --sidebar: #ffffff;
       --card: #ffffff;
-      --border: #e4e7ec;
-      --text: #111827;
-      --muted: #6b7280;
+      --border: #e2e6ec;
+      --text: #0f172a;
+      --muted: #64748b;
       --accent: #2563eb;
       --accent-soft: #eff6ff;
       --green: #059669;
@@ -30,70 +30,70 @@
       min-height: 100vh;
     }
     .sidebar {
-      width: 200px;
+      width: 190px;
       background: var(--sidebar);
       border-right: 1px solid var(--border);
-      padding: 18px 8px;
+      padding: 16px 6px;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
     }
     .logo {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--accent);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       padding-left: 12px;
     }
     .nav-section {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.08em;
       color: var(--muted);
-      margin: 16px 12px 4px;
+      margin: 14px 12px 3px;
     }
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 9px;
-      padding: 7px 12px;
-      border-radius: 7px;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 6px;
       color: var(--muted);
       cursor: pointer;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
     }
     .nav-item:hover, .nav-item.active {
       background: var(--accent-soft);
       color: var(--accent);
     }
-    .nav-item i { width: 15px; font-size: 0.85rem; }
+    .nav-item i { width: 14px; font-size: 0.8rem; }
     .main {
-      margin-left: 200px;
+      margin-left: 190px;
       flex: 1;
-      padding: 20px 24px;
+      padding: 16px 20px;
     }
     .bots-bar {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 16px;
-      margin-bottom: 16px;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
     }
     .bot-pill {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       background: #f8fafc;
       border-radius: 999px;
-      padding: 3px 9px;
-      font-size: 0.75rem;
+      padding: 2px 8px;
+      font-size: 0.72rem;
     }
     .dot {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
     }
     .dot.green { background: var(--green); }
@@ -103,97 +103,97 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .greeting {
-      font-size: 1.75rem;
+      font-size: 1.6rem;
       font-weight: 700;
     }
     .sub {
       color: var(--muted);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       margin-top: 1px;
     }
     .status-row {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       flex-wrap: wrap;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .pill {
       background: white;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 3px 10px;
-      font-size: 0.75rem;
+      padding: 2px 9px;
+      font-size: 0.72rem;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
     }
     .metrics {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
     .metric {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
+      border-radius: 9px;
+      padding: 12px 14px;
     }
     .metric-label {
       color: var(--muted);
-      font-size: 0.72rem;
-      margin-bottom: 3px;
+      font-size: 0.68rem;
+      margin-bottom: 2px;
     }
     .metric-value {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
     }
     .card {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 14px;
+      border-radius: 9px;
+      padding: 14px;
+      margin-bottom: 12px;
     }
     .card h3 {
-      font-size: 0.9rem;
-      margin-bottom: 12px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
     }
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
     .controls {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       flex-wrap: wrap;
       align-items: center;
     }
     button {
-      padding: 7px 12px;
+      padding: 6px 11px;
       border: none;
-      border-radius: 7px;
+      border-radius: 6px;
       font-weight: 600;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       cursor: pointer;
     }
     .btn-primary { background: var(--accent); color: white; }
     .btn-success { background: var(--green); color: white; }
     .btn-danger { background: var(--red); color: white; }
     .btn-secondary { background: #f1f5f9; color: var(--text); }
-    input[type="range"] { width: 140px; }
+    input[type="range"] { width: 120px; }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.8rem;
+      font-size: 0.76rem;
     }
     th, td {
-      padding: 9px 5px;
+      padding: 8px 4px;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
@@ -201,42 +201,42 @@
     .positive { color: var(--green); }
     .negative { color: var(--red); }
     .auth-box {
-      max-width: 340px;
-      margin: 90px auto;
+      max-width: 320px;
+      margin: 80px auto;
       background: white;
-      border-radius: 12px;
-      padding: 28px;
+      border-radius: 10px;
+      padding: 24px;
       border: 1px solid var(--border);
     }
-    .auth-box h2 { text-align: center; margin-bottom: 20px; color: var(--accent); }
+    .auth-box h2 { text-align: center; margin-bottom: 18px; color: var(--accent); }
     .auth-box input {
       width: 100%;
-      padding: 10px 11px;
-      margin-bottom: 9px;
+      padding: 9px 10px;
+      margin-bottom: 8px;
       border: 1px solid var(--border);
-      border-radius: 7px;
+      border-radius: 6px;
     }
     .hidden { display: none !important; }
-    .error { color: var(--red); font-size: 0.82rem; margin-top: 5px; }
-    .success { color: var(--green); font-size: 0.82rem; margin-top: 5px; }
+    .error { color: var(--red); font-size: 0.78rem; margin-top: 4px; }
+    .success { color: var(--green); font-size: 0.78rem; margin-top: 4px; }
     .market-timeline {
-      height: 36px;
-      background: linear-gradient(90deg, #e5e7eb 0%, #dbeafe 40%, #93c5fd 60%, #bfdbfe 100%);
+      height: 28px;
+      background: linear-gradient(90deg, #e5e7eb 0%, #dbeafe 35%, #93c5fd 55%, #bfdbfe 100%);
       border-radius: 999px;
       position: relative;
-      margin: 10px 0;
+      margin: 8px 0;
     }
     .market-timeline::after {
       content: '';
       position: absolute;
-      left: 55%;
-      top: -3px;
-      width: 12px;
-      height: 42px;
+      left: 52%;
+      top: -2px;
+      width: 10px;
+      height: 32px;
       background: #1e40af;
-      border-radius: 4px;
+      border-radius: 3px;
     }
-    .small-text { font-size: 0.75rem; color: var(--muted); }
+    .small-text { font-size: 0.7rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -247,7 +247,7 @@
       <input type="email" id="login-email" placeholder="Email" />
       <input type="password" id="login-password" placeholder="Password" />
       <button class="btn-primary" style="width:100%" onclick="login()">Log ind</button>
-      <p style="text-align:center; margin-top:14px; color:var(--muted); font-size:0.82rem;">
+      <p style="text-align:center; margin-top:12px; color:var(--muted); font-size:0.78rem;">
         Ingen konto? <a href="#" onclick="showRegister()" style="color:var(--accent)">Opret en</a>
       </p>
       <div id="login-error" class="error"></div>
@@ -257,7 +257,7 @@
       <input type="email" id="reg-email" placeholder="Email" />
       <input type="password" id="reg-password" placeholder="Password (min. 6)" />
       <button class="btn-primary" style="width:100%" onclick="register()">Opret konto</button>
-      <p style="text-align:center; margin-top:14px; color:var(--muted); font-size:0.82rem;">
+      <p style="text-align:center; margin-top:12px; color:var(--muted); font-size:0.78rem;">
         Har du allerede? <a href="#" onclick="showLogin()" style="color:var(--accent)">Log ind</a>
       </p>
       <div id="reg-error" class="error"></div>
@@ -278,7 +278,7 @@
       <div class="nav-item"><i class="fas fa-cog"></i> Indstillinger</div>
       <div class="nav-item"><i class="fas fa-user"></i> Profil</div>
 
-      <div style="margin-top: 40px;">
+      <div style="margin-top: 36px;">
         <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Log ud</div>
       </div>
     </aside>
@@ -326,34 +326,34 @@
         </div>
         <div class="metric">
           <div class="metric-label">Sidste signal</div>
-          <div class="metric-value" id="last-signal" style="font-size:0.95rem;">–</div>
+          <div class="metric-value" id="last-signal" style="font-size:0.9rem;">–</div>
         </div>
       </div>
 
       <div class="grid-2">
         <div class="card">
           <h3>Bot-styring</h3>
-          <div style="margin-bottom:10px;">
+          <div style="margin-bottom:8px;">
             Aggressivitet: <strong id="aggressiveness-value">5</strong> / 10<br>
-            <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" style="margin-top:4px;" />
+            <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" style="margin-top:3px;" />
           </div>
           <div class="controls">
             <button class="btn-secondary" onclick="saveSettings()">Gem</button>
             <button class="btn-success" id="btn-start" onclick="startBot()">Start bot</button>
             <button class="btn-danger" id="btn-stop" onclick="stopBot()" disabled>Stop bot</button>
           </div>
-          <div id="settings-msg" style="margin-top:8px;"></div>
+          <div id="settings-msg" style="margin-top:6px;"></div>
         </div>
 
         <div class="card">
           <h3>Dagens markeder</h3>
           <div class="market-timeline"></div>
-          <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--muted);">
+          <div style="display:flex; justify-content:space-between; font-size:0.65rem; color:var(--muted);">
             <span>Asien</span>
             <span>London</span>
             <span>New York</span>
           </div>
-          <div class="small-text" style="margin-top:8px;">Simuleret · paper trading</div>
+          <div class="small-text" style="margin-top:6px;">Simuleret · paper trading</div>
         </div>
       </div>
 
