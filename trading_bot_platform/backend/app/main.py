@@ -11,8 +11,8 @@ from app.api import auth, users
 
 settings = get_settings()
 
-# Sti til frontend
-FRONTEND_DIR = Path(__file__).resolve().parent.parent.parent / "frontend"
+# Sti til frontend (nu inde i backend)
+FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
 
 @asynccontextmanager
@@ -54,6 +54,5 @@ async def serve_frontend():
     return {"message": "Trading Bot Platform API", "docs": "/docs"}
 
 
-# Serve static hvis der kommer flere filer senere
 if FRONTEND_DIR.exists():
     app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")

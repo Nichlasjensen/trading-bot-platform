@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trading Bot Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --sidebar: #ffffff;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --muted: #64748b;
+      --accent: #3b82f6;
+      --accent-light: #eff6ff;
+      --green: #10b981;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 240px;
+      background: var(--sidebar);
+      border-right: 1px solid var(--border);
+      padding: 24px 16px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar h2 {
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: var(--muted);
+      cursor: pointer;
+      margin-bottom: 4px;
+      transition: all 0.15s;
+    }
+    .nav-item:hover, .nav-item.active {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .nav-item i { width: 20px; }
+    .main {
+      margin-left: 240px;
+      flex: 1;
+      padding: 32px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .greeting { font-size: 1.75rem; font-weight: 700; }
+    .status-bar {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .status-pill {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot.green { background: var(--green); }
+    .dot.red { background: var(--red); }
+    .dot.yellow { background: var(--yellow); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .metric-value { font-size: 1.8rem; font-weight: 700; }
+    .metric-label { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+    .positive { color: var(--green); }
+    .negative { color: var(--red); }
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    button:hover { opacity: 0.9; }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-success { background: var(--green); color: white; }
+    .btn-danger { background: var(--red); color: white; }
+    .btn-secondary { background: #f1f5f9; color: var(--text); }
+    input[type="range"] { width: 200px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 12px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--muted); font-weight: 500; }
+    .auth-box {
+      max-width: 400px;
+      margin: 100px auto;
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .auth-box input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .hidden { display: none !important; }
+    .error { color: var(--red); font-size: 0.9rem; margin-top: 8px; }
+    .success { color: var(--green); font-size: 0.9rem; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <!-- AUTH -->
+  <div id="auth-section" class="auth-box">
+    <h2 style="margin-bottom: 24px; text-align: center;">Trading Bot</h2>
+    <div id="login-form">
+      <input type="email" id="login-email" placeholder="Email" />
+      <input type="password" id="login-password" placeholder="Password" />
+      <button class="btn-primary" style="width:100%" onclick="login()">Log ind</button>
+      <p style="text-align:center; margin-top:16px; color:var(--muted);">
+        Ingen konto? <a href="#" onclick="showRegister()" style="color:var(--accent)">Opret en</a>
+      </p>
+      <div id="login-error" class="error"></div>
+    </div>
+    <div id="register-form" class="hidden">
+      <input type="text" id="reg-name" placeholder="Navn (valgfrit)" />
+      <input type="email" id="reg-email" placeholder="Email" />
+      <input type="password" id="reg-password" placeholder="Password (min. 6)" />
+      <button class="btn-primary" style="width:100%" onclick="register()">Opret konto</button>
+      <p style="text-align:center; margin-top:16px; color:var(--muted);">
+        Har du allerede? <a href="#" onclick="showLogin()" style="color:var(--accent)">Log ind</a>
+      </p>
+      <div id="reg-error" class="error"></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="hidden" style="display:flex; width:100%;">
+    <aside class="sidebar">
+      <h2><i class="fas fa-robot"></i> Trading Bot</h2>
+      <div class="nav-item active"><i class="fas fa-th-large"></i> Oversigt</div>
+      <div class="nav-item"><i class="fas fa-chart-line"></i> Trades</div>
+      <div class="nav-item"><i class="fas fa-cog"></i> Indstillinger</div>
+      <div class="nav-item"><i class="fas fa-user"></i> Profil</div>
+      <div style="margin-top:40px;">
+        <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Log ud</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="header">
+        <div>
+          <div class="greeting" id="greeting">Goddag</div>
+          <div style="color:var(--muted); margin-top:4px;" id="user-email"></div>
+        </div>
+        <div>
+          <span id="bot-badge" class="status-pill"><span class="dot"></span> <span id="bot-status-text">Stoppet</span></span>
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-pill"><span class="dot green"></span> System online</div>
+        <div class="status-pill">Paper trading</div>
+        <div class="status-pill">Aggressivitet: <strong id="agg-display">5</strong>/10</div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="metric-label">Balance</div>
+          <div class="metric-value" id="balance">10.000</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Total PnL</div>
+          <div class="metric-value" id="pnl">0.00</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Åbne positioner</div>
+          <div class="metric-value" id="positions">0</div>
+        </div>
+        <div class="card">
+          <div class="metric-label">Sidste signal</div>
+          <div class="metric-value" id="last-signal" style="font-size:1.2rem;">–</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:24px;">
+        <h3 style="margin-bottom:16px;">Bot-styring</h3>
+        <div style="margin-bottom:16px;">
+          <label>Aggressivitet: <strong id="aggressiveness-value">5</strong> / 10</label><br>
+          <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" />
+          <div style="color:var(--muted); font-size:0.85rem; margin-top:4px;">
+            1–3 forsigtig · 4–6 medium · 7–10 aggressiv
+          </div>
+        </div>
+        <div class="controls">
+          <button class="btn-secondary" onclick="saveSettings()">Gem indstillinger</button>
+          <button class="btn-success" id="btn-start" onclick="startBot()">Start bot</button>
+          <button class="btn-danger" id="btn-stop" onclick="stopBot()" disabled>Stop bot</button>
+        </div>
+        <div id="settings-msg" style="margin-top:12px;"></div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:16px;">Seneste trades</h3>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Tid</th>
+                <th>Side</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Qty</th>
+                <th>PnL</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="trades-body">
+              <tr><td colspan="7" style="color:var(--muted);">Ingen trades endnu</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const API = window.location.origin + "/api/v1";
+    let token = localStorage.getItem("token") || null;
+
+    function showRegister() {
+      document.getElementById("login-form").classList.add("hidden");
+      document.getElementById("register-form").classList.remove("hidden");
+    }
+    function showLogin() {
+      document.getElementById("register-form").classList.add("hidden");
+      document.getElementById("login-form").classList.remove("hidden");
+    }
+
+    function updateAgg() {
+      const val = document.getElementById("aggressiveness").value;
+      document.getElementById("aggressiveness-value").textContent = val;
+      document.getElementById("agg-display").textContent = val;
+    }
+
+    async function api(path, options = {}) {
+      const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
+      if (token) headers["Authorization"] = `Bearer ${token}`;
+      const res = await fetch(`${API}${path}`, { ...options, headers });
+      if (res.status === 401) { logout(); throw new Error("Unauthorized"); }
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.detail || "Fejl");
+      return data;
+    }
+
+    async function register() {
+      const err = document.getElementById("reg-error");
+      err.textContent = "";
+      try {
+        await api("/auth/register", {
+          method: "POST",
+          body: JSON.stringify({
+            email: document.getElementById("reg-email").value,
+            password: document.getElementById("reg-password").value,
+            full_name: document.getElementById("reg-name").value || null,
+          }),
+        });
+        err.className = "success";
+        err.textContent = "Konto oprettet! Log ind nu.";
+        showLogin();
+      } catch (e) {
+        err.className = "error";
+        err.textContent = e.message;
+      }
+    }
+
+    async function login() {
+      const err = document.getElementById("login-error");
+      err.textContent = "";
+      try {
+        const form = new URLSearchParams();
+        form.append("username", document.getElementById("login-email").value);
+        form.append("password", document.getElementById("login-password").value);
+        const res = await fetch(`${API}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: form,
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || "Login fejlede");
+        token = data.access_token;
+        localStorage.setItem("token", token);
+        await loadDashboard();
+      } catch (e) {
+        err.textContent = e.message;
+      }
+    }
+
+    function logout() {
+      token = null;
+      localStorage.removeItem("token");
+      document.getElementById("auth-section").classList.remove("hidden");
+      document.getElementById("dashboard").classList.add("hidden");
+    }
+
+    function setGreeting() {
+      const h = new Date().getHours();
+      let g = "Goddag";
+      if (h < 12) g = "Godmorgen";
+      else if (h < 18) g = "God eftermiddag";
+      else g = "God aften";
+      document.getElementById("greeting").textContent = g;
+    }
+
+    async function loadDashboard() {
+      try {
+        const user = await api("/users/me");
+        document.getElementById("auth-section").classList.add("hidden");
+        document.getElementById("dashboard").classList.remove("hidden");
+        document.getElementById("user-email").textContent = user.email;
+        document.getElementById("aggressiveness").value = user.aggressiveness;
+        updateAgg();
+        setGreeting();
+        updateStatusUI(user);
+        await loadTrades();
+        if (window.statusInterval) clearInterval(window.statusInterval);
+        window.statusInterval = setInterval(refreshStatus, 15000);
+      } catch (e) {
+        logout();
+      }
+    }
+
+    function updateStatusUI(data) {
+      document.getElementById("balance").textContent = data.current_balance.toFixed(2);
+      const pnlEl = document.getElementById("pnl");
+      pnlEl.textContent = data.total_pnl.toFixed(2);
+      pnlEl.className = "metric-value " + (data.total_pnl >= 0 ? "positive" : "negative");
+      document.getElementById("positions").textContent = data.open_positions;
+      document.getElementById("last-signal").textContent = data.last_signal || "–";
+
+      const badge = document.getElementById("bot-badge");
+      const text = document.getElementById("bot-status-text");
+      const btnStart = document.getElementById("btn-start");
+      const btnStop = document.getElementById("btn-stop");
+      const dot = badge.querySelector(".dot");
+
+      if (data.is_running || data.is_bot_running) {
+        text.textContent = "Kører";
+        dot.className = "dot green";
+        btnStart.disabled = true;
+        btnStop.disabled = false;
+      } else {
+        text.textContent = "Stoppet";
+        dot.className = "dot red";
+        btnStart.disabled = false;
+        btnStop.disabled = true;
+      }
+    }
+
+    async function refreshStatus() {
+      try {
+        const status = await api("/users/me/bot/status");
+        updateStatusUI(status);
+      } catch (_) {}
+    }
+
+    async function saveSettings() {
+      const msg = document.getElementById("settings-msg");
+      try {
+        const agg = parseInt(document.getElementById("aggressiveness").value);
+        await api("/users/me/settings", {
+          method: "PATCH",
+          body: JSON.stringify({ aggressiveness: agg }),
+        });
+        msg.className = "success";
+        msg.textContent = "Indstillinger gemt";
+        setTimeout(() => (msg.textContent = ""), 3000);
+      } catch (e) {
+        msg.className = "error";
+        msg.textContent = e.message;
+      }
+    }
+
+    async function startBot() {
+      try {
+        const status = await api("/users/me/bot/start", { method: "POST" });
+        updateStatusUI(status);
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    async function stopBot() {
+      try {
+        const status = await api("/users/me/bot/stop", { method: "POST" });
+        updateStatusUI(status);
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    async function loadTrades() {
+      try {
+        const trades = await api("/users/me/trades");
+        const tbody = document.getElementById("trades-body");
+        if (!trades.length) {
+          tbody.innerHTML = '<tr><td colspan="7" style="color:var(--muted);">Ingen trades endnu</td></tr>';
+          return;
+        }
+        tbody.innerHTML = trades.map(t => `
+          <tr>
+            <td>${new Date(t.opened_at).toLocaleString("da-DK")}</td>
+            <td>${t.side.toUpperCase()}</td>
+            <td>${t.entry_price.toFixed(2)}</td>
+            <td>${t.exit_price ? t.exit_price.toFixed(2) : "–"}</td>
+            <td>${t.quantity.toFixed(6)}</td>
+            <td class="${t.pnl >= 0 ? "positive" : "negative"}">${t.pnl.toFixed(2)}</td>
+            <td>${t.status}</td>
+          </tr>
+        `).join("");
+      } catch (_) {}
+    }
+
+    if (token) loadDashboard();
+  </script>
+</body>
+</html>
