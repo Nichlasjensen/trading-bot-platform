@@ -7,17 +7,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
     :root {
-      --bg: #f4f7fb;
-      --sidebar: #ffffff;
+      --bg: #f0f4f8;
+      --sidebar-bg: #ffffff;
       --card: #ffffff;
       --border: #e2e8f0;
-      --text: #1e293b;
+      --text: #0f172a;
       --muted: #64748b;
-      --accent: #3b82f6;
-      --accent-light: #eff6ff;
-      --green: #10b981;
-      --red: #ef4444;
-      --yellow: #f59e0b;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --green: #059669;
+      --green-soft: #d1fae5;
+      --red: #dc2626;
+      --red-soft: #fee2e2;
+      --yellow: #d97706;
+      --yellow-soft: #fef3c7;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -28,138 +31,194 @@
       min-height: 100vh;
     }
     .sidebar {
-      width: 240px;
-      background: var(--sidebar);
+      width: 220px;
+      background: var(--sidebar-bg);
       border-right: 1px solid var(--border);
-      padding: 24px 16px;
+      padding: 20px 12px;
       position: fixed;
       height: 100vh;
       overflow-y: auto;
     }
-    .sidebar h2 {
-      font-size: 1.1rem;
-      margin-bottom: 24px;
+    .logo {
+      font-weight: 700;
+      font-size: 1.15rem;
       color: var(--accent);
+      margin-bottom: 28px;
+      padding-left: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
+    .nav-section {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 20px 12px 8px;
+    }
     .nav-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
+      gap: 10px;
+      padding: 9px 12px;
       border-radius: 8px;
       color: var(--muted);
       cursor: pointer;
-      margin-bottom: 4px;
-      transition: all 0.15s;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
     }
     .nav-item:hover, .nav-item.active {
-      background: var(--accent-light);
+      background: var(--accent-soft);
       color: var(--accent);
     }
-    .nav-item i { width: 20px; }
+    .nav-item i { width: 18px; text-align: center; }
     .main {
-      margin-left: 240px;
+      margin-left: 220px;
       flex: 1;
-      padding: 32px;
+      padding: 28px 32px;
     }
-    .header {
+    .topbar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 32px;
+      align-items: flex-start;
+      margin-bottom: 24px;
     }
-    .greeting { font-size: 1.75rem; font-weight: 700; }
-    .status-bar {
+    .greeting {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .sub {
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+    .status-row {
       display: flex;
-      gap: 16px;
+      gap: 10px;
       flex-wrap: wrap;
       margin-bottom: 24px;
     }
-    .status-pill {
+    .pill {
       background: white;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 0.85rem;
+      padding: 5px 12px;
+      font-size: 0.82rem;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
     .dot.green { background: var(--green); }
     .dot.red { background: var(--red); }
     .dot.yellow { background: var(--yellow); }
-    .grid {
+    .metrics {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin-bottom: 24px;
     }
-    .card {
-      background: var(--card);
+    .metric {
+      background: white;
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
+      border-radius: 14px;
+      padding: 18px 20px;
     }
-    .metric-value { font-size: 1.8rem; font-weight: 700; }
-    .metric-label { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
-    .positive { color: var(--green); }
-    .negative { color: var(--red); }
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+    }
+    .metric-value {
+      font-size: 1.65rem;
+      font-weight: 700;
+    }
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
     .controls {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       align-items: center;
     }
     button {
-      padding: 10px 18px;
+      padding: 9px 16px;
       border: none;
-      border-radius: 10px;
+      border-radius: 9px;
       font-weight: 600;
+      font-size: 0.9rem;
       cursor: pointer;
-      transition: opacity 0.15s;
     }
-    button:hover { opacity: 0.9; }
     .btn-primary { background: var(--accent); color: white; }
     .btn-success { background: var(--green); color: white; }
     .btn-danger { background: var(--red); color: white; }
     .btn-secondary { background: #f1f5f9; color: var(--text); }
-    input[type="range"] { width: 200px; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td { padding: 12px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+    input[type="range"] { width: 180px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th, td {
+      padding: 11px 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
     th { color: var(--muted); font-weight: 500; }
+    .positive { color: var(--green); }
+    .negative { color: var(--red); }
     .auth-box {
-      max-width: 400px;
-      margin: 100px auto;
+      max-width: 380px;
+      margin: 120px auto;
       background: white;
       border-radius: 16px;
-      padding: 32px;
+      padding: 36px 32px;
       border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     }
+    .auth-box h2 { text-align: center; margin-bottom: 28px; color: var(--accent); }
     .auth-box input {
       width: 100%;
-      padding: 12px;
+      padding: 12px 14px;
       margin-bottom: 12px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 9px;
+      font-size: 1rem;
     }
     .hidden { display: none !important; }
-    .error { color: var(--red); font-size: 0.9rem; margin-top: 8px; }
-    .success { color: var(--green); font-size: 0.9rem; margin-top: 8px; }
+    .error { color: var(--red); font-size: 0.88rem; margin-top: 8px; }
+    .success { color: var(--green); font-size: 0.88rem; margin-top: 8px; }
+    @media (max-width: 900px) {
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .sidebar { width: 70px; }
+      .main { margin-left: 70px; }
+      .nav-item span, .logo span, .nav-section { display: none; }
+    }
   </style>
 </head>
 <body>
   <!-- AUTH -->
   <div id="auth-section" class="auth-box">
-    <h2 style="margin-bottom: 24px; text-align: center;">Trading Bot</h2>
+    <h2>Trading Bot</h2>
     <div id="login-form">
       <input type="email" id="login-email" placeholder="Email" />
       <input type="password" id="login-password" placeholder="Password" />
       <button class="btn-primary" style="width:100%" onclick="login()">Log ind</button>
-      <p style="text-align:center; margin-top:16px; color:var(--muted);">
+      <p style="text-align:center; margin-top:18px; color:var(--muted); font-size:0.9rem;">
         Ingen konto? <a href="#" onclick="showRegister()" style="color:var(--accent)">Opret en</a>
       </p>
       <div id="login-error" class="error"></div>
@@ -169,7 +228,7 @@
       <input type="email" id="reg-email" placeholder="Email" />
       <input type="password" id="reg-password" placeholder="Password (min. 6)" />
       <button class="btn-primary" style="width:100%" onclick="register()">Opret konto</button>
-      <p style="text-align:center; margin-top:16px; color:var(--muted);">
+      <p style="text-align:center; margin-top:18px; color:var(--muted); font-size:0.9rem;">
         Har du allerede? <a href="#" onclick="showLogin()" style="color:var(--accent)">Log ind</a>
       </p>
       <div id="reg-error" class="error"></div>
@@ -179,58 +238,65 @@
   <!-- DASHBOARD -->
   <div id="dashboard" class="hidden" style="display:flex; width:100%;">
     <aside class="sidebar">
-      <h2><i class="fas fa-robot"></i> Trading Bot</h2>
-      <div class="nav-item active"><i class="fas fa-th-large"></i> Oversigt</div>
-      <div class="nav-item"><i class="fas fa-chart-line"></i> Trades</div>
-      <div class="nav-item"><i class="fas fa-cog"></i> Indstillinger</div>
-      <div class="nav-item"><i class="fas fa-user"></i> Profil</div>
-      <div style="margin-top:40px;">
-        <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Log ud</div>
+      <div class="logo"><i class="fas fa-robot"></i> <span>Trading Bot</span></div>
+
+      <div class="nav-section">Overblik</div>
+      <div class="nav-item active"><i class="fas fa-th-large"></i> <span>Oversigt</span></div>
+      <div class="nav-item"><i class="fas fa-chart-line"></i> <span>Trades</span></div>
+      <div class="nav-item"><i class="fas fa-newspaper"></i> <span>Nyheder</span></div>
+
+      <div class="nav-section">Konto</div>
+      <div class="nav-item"><i class="fas fa-cog"></i> <span>Indstillinger</span></div>
+      <div class="nav-item"><i class="fas fa-user"></i> <span>Profil</span></div>
+
+      <div style="margin-top: 40px;">
+        <div class="nav-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span>Log ud</span></div>
       </div>
     </aside>
 
     <main class="main">
-      <div class="header">
+      <div class="topbar">
         <div>
           <div class="greeting" id="greeting">Goddag</div>
-          <div style="color:var(--muted); margin-top:4px;" id="user-email"></div>
+          <div class="sub" id="user-email"></div>
         </div>
         <div>
-          <span id="bot-badge" class="status-pill"><span class="dot"></span> <span id="bot-status-text">Stoppet</span></span>
+          <span id="bot-badge" class="pill"><span class="dot"></span> <span id="bot-status-text">Stoppet</span></span>
         </div>
       </div>
 
-      <div class="status-bar">
-        <div class="status-pill"><span class="dot green"></span> System online</div>
-        <div class="status-pill">Paper trading</div>
-        <div class="status-pill">Aggressivitet: <strong id="agg-display">5</strong>/10</div>
+      <div class="status-row">
+        <div class="pill"><span class="dot green"></span> System online</div>
+        <div class="pill">Paper trading</div>
+        <div class="pill">Aggressivitet: <strong id="agg-display">5</strong>/10</div>
+        <div class="pill">Sidste signal: <strong id="last-signal-pill">–</strong></div>
       </div>
 
-      <div class="grid">
-        <div class="card">
+      <div class="metrics">
+        <div class="metric">
           <div class="metric-label">Balance</div>
           <div class="metric-value" id="balance">10.000</div>
         </div>
-        <div class="card">
+        <div class="metric">
           <div class="metric-label">Total PnL</div>
           <div class="metric-value" id="pnl">0.00</div>
         </div>
-        <div class="card">
+        <div class="metric">
           <div class="metric-label">Åbne positioner</div>
           <div class="metric-value" id="positions">0</div>
         </div>
-        <div class="card">
+        <div class="metric">
           <div class="metric-label">Sidste signal</div>
-          <div class="metric-value" id="last-signal" style="font-size:1.2rem;">–</div>
+          <div class="metric-value" id="last-signal" style="font-size:1.1rem;">–</div>
         </div>
       </div>
 
-      <div class="card" style="margin-bottom:24px;">
-        <h3 style="margin-bottom:16px;">Bot-styring</h3>
+      <div class="card">
+        <h3>Bot-styring</h3>
         <div style="margin-bottom:16px;">
-          <label>Aggressivitet: <strong id="aggressiveness-value">5</strong> / 10</label><br>
+          <div style="margin-bottom:6px;">Aggressivitet: <strong id="aggressiveness-value">5</strong> / 10</div>
           <input type="range" id="aggressiveness" min="1" max="10" value="5" oninput="updateAgg()" />
-          <div style="color:var(--muted); font-size:0.85rem; margin-top:4px;">
+          <div style="color:var(--muted); font-size:0.8rem; margin-top:4px;">
             1–3 forsigtig · 4–6 medium · 7–10 aggressiv
           </div>
         </div>
@@ -243,7 +309,7 @@
       </div>
 
       <div class="card">
-        <h3 style="margin-bottom:16px;">Seneste trades</h3>
+        <h3>Seneste trades</h3>
         <div style="overflow-x:auto;">
           <table>
             <thead>
@@ -379,6 +445,7 @@
       pnlEl.className = "metric-value " + (data.total_pnl >= 0 ? "positive" : "negative");
       document.getElementById("positions").textContent = data.open_positions;
       document.getElementById("last-signal").textContent = data.last_signal || "–";
+      document.getElementById("last-signal-pill").textContent = data.last_signal || "–";
 
       const badge = document.getElementById("bot-badge");
       const text = document.getElementById("bot-status-text");
